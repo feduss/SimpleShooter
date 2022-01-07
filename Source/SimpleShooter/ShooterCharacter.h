@@ -39,9 +39,16 @@ private:
 	bool bIsJumping = false;
 
 	UPROPERTY(EditAnywhere)
-		float RotationRateUp = 100.f;
+	float RotationRateUp = 100.f;
 
 	UPROPERTY(EditAnywhere)
-		float RotationRateRight = 100.f;
+	float RotationRateRight = 100.f;
 
+	//The gun class, not editabled at runtime (EditDefaultOnly)
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class AGun> GunClass;
+
+	//The gun pointer
+	UPROPERTY()
+	class AGun* Gun = nullptr;
 };
