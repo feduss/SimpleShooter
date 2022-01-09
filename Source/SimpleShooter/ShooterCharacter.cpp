@@ -22,7 +22,7 @@ void AShooterCharacter::BeginPlay()
 	//Hide the old gun mesh
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
 
-	//New socket to attach the new gun mesh is weapon_rSocket
+	//weapon_rSocket is the new socket to attach the new gun mesh
 	Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("weapon_rSocket"));
 	Gun->SetOwner(this);
 
@@ -48,6 +48,7 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &AShooterCharacter::LookRight);
 	PlayerInputComponent->BindAxis(TEXT("LookRightGamepad"), this, &AShooterCharacter::LookRightGamepad);
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &AShooterCharacter::Jump);
+	PlayerInputComponent->BindAction(TEXT("Shoot"), EInputEvent::IE_Pressed, this, &AShooterCharacter::Shoot);
 
 }
 
@@ -107,6 +108,12 @@ void AShooterCharacter::Jump() {
 		Super::Jump();
 
 		bIsJumping = false;
+	}
+}
+
+void AShooterCharacter::Shoot() {
+	if (Gun != nullptr) {
+		Gun->Shoot();
 	}
 }
 

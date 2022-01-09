@@ -15,6 +15,8 @@ public:
 	// Sets default values for this actor's properties
 	AGun();
 
+	void Shoot(); //Pull the trigger
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -28,6 +30,17 @@ private:
 	USceneComponent* Root = nullptr;
 
 	UPROPERTY(VisibleAnywhere)
-	class USkeletalMeshComponent* Gun = nullptr;
+	class USkeletalMeshComponent* GunMesh = nullptr;
 
+	UPROPERTY(EditAnywhere, Category = "Effects")
+	class UParticleSystem* ShootEffect = nullptr;
+
+	UPROPERTY(EditAnywhere, Category = "Effects")
+	class UParticleSystem* ImpactEffect = nullptr;
+
+	FVector PlayerLocation;
+	FRotator PlayerRotation;
+
+	UPROPERTY(EditAnywhere)
+	float Range = 3000.f;
 };

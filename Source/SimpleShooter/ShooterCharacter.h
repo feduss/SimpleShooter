@@ -34,6 +34,7 @@ private:
 	void LookRight(float AxisValue);
 	void LookRightGamepad(float AxisValue);
 	void Jump();
+	void Shoot();
 
 	bool bInvertedAxis = false;
 	bool bIsJumping = false;
